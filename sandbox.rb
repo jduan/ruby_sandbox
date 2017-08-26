@@ -27,4 +27,4 @@ end
 c = C.new
 c.name = "hello"
 c.hi
-puts c.name
+  puts c.name
