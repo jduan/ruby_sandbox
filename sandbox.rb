@@ -1,30 +1,21 @@
-def f2c(fahrenheit)
-  (fahrenheit - 32) * 5.0 / 9
-end
+File.open(ARGV[0]) do |fd|
+  twos = 0
+  threes = 0
 
-puts f2c(86)
-puts f2c(68)
-
-def sum(a, *others, b)
-  total = a + b
-  others.each {|other| total += other}
-  total
-end
-
-puts "sum is #{sum(1, 2, 3, 4)}"
-
-class C
-  attr_reader :name
-  def name=(name)
-    @name = name
+  fd.each_line do |line|
+    counts = Hash.new(0)
+    line.each_char do |ch|
+      counts[ch] += 1
+    end
+    inverted = counts.invert
+    if inverted.has_key?(2)
+      twos += 1
+    end
+    if inverted.has_key?(3)
+      threes += 1
+    end
+    puts "total twos: #{twos}, total threes: #{threes}"
   end
 
-  def hi
-    self.name = "hi"
-  end
+  puts twos * threes
 end
-
-c = C.new
-c.name = "hello"
-c.hi
-# puts c.name
