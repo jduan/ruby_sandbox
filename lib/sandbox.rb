@@ -1,6 +1,12 @@
 require "sandbox/version"
 
 module Sandbox
-  class Error < StandardError; end
-  # Your code goes here...
+  def self.hello
+    puts "hello world!"
+  end
+
+  private_class_method :hello
 end
+
+puts "hi"
+Sandbox.hello
